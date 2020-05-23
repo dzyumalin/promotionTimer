@@ -1,12 +1,14 @@
+window.addEventListener('DOMContentLoaded', function() {
+
 // Timer 
 
-const deadline = '2020-06-11'; // Конечная дата
+const deadline = '2020-06-11';
 
 function getTimeRemaining(endtime) {
-    const t = Date.parse(endtime) - Date.parse(new Date()),  // Отнимает текущее время и получает количество мс
-          days = Math.floor(t / (1000 * 60 * 60 * 24)), // 1000 * 60 - кол-во мс в 1 минуте, * 60 в 1 часе, * 24 часов в сутках
-          hours = Math.floor( (t / (1000 * 60 * 60) % 24)), // Кол-во мс в часе. Общее кол-во часов оставшихся до таймера
-          minutes = Math.floor( (t / 1000 / 60) % 60), // t / 1000 - кол-во с, / 60 - кол-во минут
+    const t = Date.parse(endtime) - Date.parse(new Date()),  
+          days = Math.floor(t / (1000 * 60 * 60 * 24)), 
+          hours = Math.floor( (t / (1000 * 60 * 60) % 24)), 
+          minutes = Math.floor( (t / 1000 / 60) % 60), 
           seconds = Math.floor( (t / 1000) % 60);
 
     return {
@@ -18,7 +20,7 @@ function getTimeRemaining(endtime) {
     };
 }         
 
-function getZero(num) { // Если кол-во дней, часов, минут, секунд будет меньше 10, то ф-я добавит 0
+function getZero(num) { 
     if (num >= 0 && num < 10) {
         return '0' + num;
     } else {
@@ -35,10 +37,9 @@ function setClock(selector, endtime) {
           hours = timer.querySelector("#hours"),
           minutes = timer.querySelector("#minutes"),
           seconds = timer.querySelector("#seconds"),
-          timeInterval = setInterval(updateClock, 1000); // Запуск каждую с
+          timeInterval = setInterval(updateClock, 1000); 
 
-    updateClock(); // Запускаем текущую дату и после включается 1000мс. Тем самым не будет отображено моргание.
-    // Обновляем таймер каждую с    
+    updateClock(); 
 
     function updateClock() {
         const t = getTimeRemaining(endtime);
@@ -54,6 +55,7 @@ function setClock(selector, endtime) {
     }
 }
 
-    setClock('.timer', deadline);
+    setClock('.promotion__timer', deadline);
 
+});
 
